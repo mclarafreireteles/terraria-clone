@@ -19,7 +19,8 @@
         <form method="get">
           <div class="form">
             <input id="inputSeed" type="number" name="seed" placeholder="Insira uma seed" value="">
-            <a href="jogar.html">Criar mundo!</a>
+            <input id="inputBotao" type="submit" value="Criar mundo!" onclick='this.form.action=location.pathname + "jogar.html";'>
+            <!-- <a href="jogar.html">Criar mundo!</a> -->
           </div>
       </div>
     </main>

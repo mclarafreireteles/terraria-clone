@@ -15,12 +15,12 @@ let stone = "stone"
 let iron = "iron"
 let diamond = "diamond"
 
-let skyColor = '#87ceeb'
+let skyColor = '#00bfff'
 let grassColor = '#99ff99'
 let dirtColor = '#eba487'
 let stoneColor = '#696969'
 let ironColor = 'rgb(234, 234, 234)'
-let diamondColor = '#87ebd6'
+let diamondColor = '#73fddf'
 
 let grassContainer = document.getElementById("grass")
 let dirtContainer = document.getElementById("dirt")

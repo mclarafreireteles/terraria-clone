@@ -37,11 +37,16 @@ main {
   
 }
 
-  .form a {
+#inputBotao {
+  background-color: none;
   text-decoration: none;
   font-weight: 600;
-  font-size: 35px;
+  font-size: 30px;
   color:#814e3a;
+  width: 15rem;
+  height: 3rem;
+  border-radius: 40px;
+  padding: 0rem 1rem 0rem 1rem;
 }
 
   #inputSeed {
@@ -51,7 +56,7 @@ main {
     width: 15rem;
     height: 3rem;
     border-radius: 40px;
-    padding-left: 1.5rem;
+    padding: 0rem 1rem 0rem 1rem;
   }
 
 .inventario {
@@ -100,7 +105,7 @@ main {
 
 
 #diamond {
- background-color: #87ebd6;
+ background-color: #73fddf;
 }
 
 #restart {
