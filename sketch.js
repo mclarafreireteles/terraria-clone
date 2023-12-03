@@ -99,7 +99,7 @@ function definirBlocoAtivo(container){ //recebe como parametro qual bloco será 
 
 function restart(){
   let urlRestart = window.location.href;
-  window.location.href = urlRestart.substring(0, urlRestart("/"));
+  window.location.href = urlRestart.substring(0, urlRestart.indexOf("/"));
 }
 
 

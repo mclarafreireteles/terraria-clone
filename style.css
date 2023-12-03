@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,600&display=swap');
+
 html, body {
   margin: 0;
   padding: 0;
@@ -17,6 +19,9 @@ canvas {
 }
 
 .tipo-bloco {
+  font-family: 'Roboto Flex', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -63,7 +68,6 @@ canvas {
 
 .active {
   border: 5px solid rgb(0, 0, 0);
-  box-shadow: 0 0 10px rgb(255, 139, 61);
 }
 
 
