@@ -21,7 +21,7 @@ let stoneColor = '#696969'
 let ironColor = 'rgb(234, 234, 234)'
 let diamondColor = '#73fddf'
 
-let grassContainer = document.getElementById("grass")
+let grassContainer = document.getElementById("grass") //variaveis para atualizar o número de itens no inventário
 let dirtContainer = document.getElementById("dirt")
 let stoneContainer = document.getElementById("stone")
 let ironContainer = document.getElementById("iron")
@@ -29,15 +29,12 @@ let diamondContainer = document.getElementById("diamond")
 let restartContainer = document.getElementById("restart")
 let blocoSelecionado = grassContainer;
 
-let grid = [] 
+let grid = [] //esse array armazena os blocos que constroem o mapa
 
-let diamondChance = 2; //chance de aparecer diamantes 
-let ironChance = 4; //chance de aparecer ferro
+let diamondChance = 3; //chance de aparecer diamantes 
+let ironChance = 5; //chance de aparecer ferro
 
 let player = {
-  x: 50,
-  y: 0,
-  estaCaindo: false,
   inventario: {
     grass: 0,
     dirt: 0,
@@ -51,7 +48,6 @@ let player = {
 
 function setup() {
   noStroke();
-  frameRate(15);
   setSeed();
   createCanvas(largura, altura);
   desenharTerreno();  //utiliza Noise
@@ -115,22 +111,22 @@ function desenharTerreno(){
    for (let x = 0; x < largura; x += tamanhoBloco){ //loop para espalhar noise pela tela, o noise colocado é do tamanho do pixel 
     for (let y=0; y < altura; y += tamanhoBloco){
       let noiseValue = noise(x * frequencia, y * frequencia) * amplitude; //quanto maior o X maior frequencia, quanto maior Y maior frequencia
-      let node = { // variavel para guardar informação sobre cada bloco
+      let bloco = { // variavel para guardar informação sobre cada bloco
         x: x,
         y: y,
         densidade: noiseValue,
-        blockType: "terrain"
+        tipoBloco: "grass"
       };
-      grid.push(node);
-      let index = grid.indexOf(node);
-      desenharTiles(node, index);
-      desenharMinerios(node, index);
+      grid.push(bloco); //array que armazena onde cada bloco está na tela e seu tipo
+      let index = grid.indexOf(bloco); //localização do bloco dentro do array com método indexOf
+      desenharTiles(bloco, index); //função para colocar Tile
+      desenharMinerios(bloco, index); //função para colocar Tile
     }
    }
 }
 
-function desenharTiles(node, index){
-  let {x, y, densidade} = node;
+function desenharTiles(bloco, index){
+  let {x, y, densidade} = bloco;
   let noiseAmount = densidade * y; //quanto maior o Y maior quantidade de noise
   let alturaNivel = altura - y; //definir altura do terreno para construir céu
 
@@ -159,8 +155,8 @@ function desenharTiles(node, index){
   }
 }
 
-function desenharMinerios(node, index){ //para o desenho dos minérios a lógica é um pouco diferente: pois eles tem o comportamento diferente
-  let {x, y, densidade} = node;
+function desenharMinerios(bloco, index){ //para o desenho dos minérios a lógica é um pouco diferente: pois eles tem o comportamento diferente
+  let {x, y, densidade} = bloco;
   let noiseAmount = densidade * y; //quanto maior o Y maior quantidade de noise
   let alturaNivel = altura - y; //definir altura do terreno
 

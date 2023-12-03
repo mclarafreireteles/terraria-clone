@@ -47,6 +47,11 @@ main {
   height: 3rem;
   border-radius: 40px;
   padding: 0rem 1rem 0rem 1rem;
+  cursor: pointer;
+}
+
+  #inputBotao:hover {
+    color:#562816;
 }
 
   #inputSeed {
