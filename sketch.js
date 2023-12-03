@@ -1,12 +1,11 @@
 let largura = window.innerWidth;
 let altura = window.innerHeight * 0.9;
 let tamanhoBloco = 25;
-let alturaPulo = 3;
 
 
-let frequencia = 0.003
-let amplitude = 0.8;
-let seed = 0;
+let frequencia = 0.003 //frequencia de Noise
+let amplitude = 0.8; //amplitude do Noise
+let seed = 0; //seed inicial Noise
 
 let sky = "sky"
 let grass = "grass"
@@ -30,10 +29,10 @@ let diamondContainer = document.getElementById("diamond")
 let restartContainer = document.getElementById("restart")
 let blocoSelecionado = grassContainer;
 
-let grid = []
+let grid = [] 
 
-let diamondChance = 2;
-let ironChance = 4;
+let diamondChance = 2; //chance de aparecer diamantes 
+let ironChance = 4; //chance de aparecer ferro
 
 let player = {
   x: 50,
@@ -55,7 +54,7 @@ function setup() {
   frameRate(15);
   setSeed();
   createCanvas(largura, altura);
-  desenharTerreno();
+  desenharTerreno();  //utiliza Noise
   eventos();
   definirBlocoAtivo(grassContainer);
 }
@@ -103,21 +102,20 @@ function restart(){
 }
 
 
-function setSeed(){
+function setSeed(){  //função para armezenar seed digitada pelo usuário
   const respostaUsuario = window.location.search; // colocar seed escolhida pelo usuário na função noise()
   const url = new URLSearchParams(respostaUsuario)
   if(url.has("seed")){
     seed = url.get("seed")
   }
-  noiseSeed(seed)
-  randomSeed(seed)
+  noiseSeed(seed) //função noiseSeed para geração da seed
 }
 
 function desenharTerreno(){
-   for (let x = 0; x < largura; x += tamanhoBloco){
+   for (let x = 0; x < largura; x += tamanhoBloco){ //loop para espalhar noise pela tela, o noise colocado é do tamanho do pixel 
     for (let y=0; y < altura; y += tamanhoBloco){
-      let noiseValue = noise(x * frequencia, y * frequencia) * amplitude;
-      let node = {
+      let noiseValue = noise(x * frequencia, y * frequencia) * amplitude; //quanto maior o X maior frequencia, quanto maior Y maior frequencia
+      let node = { // variavel para guardar informação sobre cada bloco
         x: x,
         y: y,
         densidade: noiseValue,
@@ -125,56 +123,56 @@ function desenharTerreno(){
       };
       grid.push(node);
       let index = grid.indexOf(node);
-      paintTerrainTiles(node, index);
-      paintMinerios(node, index);
+      desenharTiles(node, index);
+      desenharMinerios(node, index);
     }
    }
 }
 
-function paintTerrainTiles(node, index){
+function desenharTiles(node, index){
   let {x, y, densidade} = node;
   let noiseAmount = densidade * y; //quanto maior o Y maior quantidade de noise
-  let alturaNivel = altura - y; //definir altura do terreno
+  let alturaNivel = altura - y; //definir altura do terreno para construir céu
 
   if (noiseAmount < alturaNivel){ //menor que a altura do terreno será ceu
     grid[index].tipoBloco = sky;
     fill(skyColor); //define "tile" do céu
-    rect(x, y, tamanhoBloco, tamanhoBloco)
+    rect(x, y, tamanhoBloco, tamanhoBloco) //desenhar tile
   }
 
   if (noiseAmount > alturaNivel * 0.6){ //restante do código segue a mesma lógica, pintando o tile de acordo com a quantidade de noiseAmount
     grid[index].tipoBloco = grass;
-    fill(grassColor); //define "tile" do céu
+    fill(grassColor); //define "tile" da grama
     rect(x, y, tamanhoBloco, tamanhoBloco)
   }
 
-  if (noiseAmount > alturaNivel * 0.8){ //menor que a altura do terreno será ceu
+  if (noiseAmount > alturaNivel * 0.8){
     grid[index].tipoBloco = dirt;
-    fill(dirtColor); //define "tile" do céu
+    fill(dirtColor); //define "tile" da terra
     rect(x, y, tamanhoBloco, tamanhoBloco)
   }
 
-  if (noiseAmount > alturaNivel * 2){ //menor que a altura do terreno será ceu
+  if (noiseAmount > alturaNivel * 2){ 
     grid[index].tipoBloco = stone;
-    fill(stoneColor); //define "tile" do céu
+    fill(stoneColor); //define "tile" da pedra
     rect(x, y, tamanhoBloco, tamanhoBloco)
   }
 }
 
-function paintMinerios(node, index){
+function desenharMinerios(node, index){ //para o desenho dos minérios a lógica é um pouco diferente: pois eles tem o comportamento diferente
   let {x, y, densidade} = node;
   let noiseAmount = densidade * y; //quanto maior o Y maior quantidade de noise
   let alturaNivel = altura - y; //definir altura do terreno
 
-  if (noiseAmount > alturaNivel * 2 && diamondChance > random(100)){ //menor que a altura do terreno será ceu
+  if (noiseAmount > alturaNivel * 2 && diamondChance > random(100)){
     grid[index].tipoBloco = diamond;
-    fill(diamondColor); //define "tile" do céu
+    fill(diamondColor); 
     rect(x, y, tamanhoBloco, tamanhoBloco)
   }
 
-  if (noiseAmount > alturaNivel * 1.5 && ironChance > random(100)){ //menor que a altura do terreno será ceu
+  if (noiseAmount > alturaNivel * 1.5 && ironChance > random(100)){
     grid[index].tipoBloco = iron;
-    fill(ironColor); //define "tile" do céu
+    fill(ironColor); 
     rect(x, y, tamanhoBloco, tamanhoBloco)
   }
 }
