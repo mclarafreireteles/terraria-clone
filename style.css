@@ -23,16 +23,17 @@ canvas {
   align-items: center;
   width: 100%;
   height: 100%;
-  color: rgb(18, 51, 80);
+  color: rgb(0, 0, 0);
   cursor: pointer;
 }
 
-.tipo-bloco:hover {
-  background-color: cornflowerblue !important;
-}
 
 #grass {
   background-color: #99ff99;
+}
+
+#grass:hover {
+  background-color: #5fbc5f;
 }
 
 #dirt {
@@ -40,7 +41,7 @@ canvas {
 }
 
 #stone {
-  background-color: #696969;
+  background-color: #eba487;
 }
 
 #iron {

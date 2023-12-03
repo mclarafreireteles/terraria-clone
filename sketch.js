@@ -37,7 +37,7 @@ let diamondChance = 2;
 let ironChance = 4;
 
 let player = {
-  x: 0,
+  x: 50,
   y: 0,
   estaCaindo: false,
   inventario: {
@@ -62,7 +62,7 @@ function setup() {
 }
 
 function draw() {
-  movimentoJogador();
+  //movimentoJogador();
 }
 
 function eventos(){
@@ -179,4 +179,3 @@ function paintMinerios(info, index){
     rect(x, y, tamanhoBloco, tamanhoBloco)
   }
 }
-
