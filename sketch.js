@@ -21,7 +21,6 @@ let dirtColor = '#eba487'
 let stoneColor = '#696969'
 let ironColor = 'rgb(234, 234, 234)'
 let diamondColor = '#87ebd6'
-let playerColor = 'red'
 
 let grassContainer = document.getElementById("grass")
 let dirtContainer = document.getElementById("dirt")
@@ -62,7 +61,7 @@ function setup() {
 }
 
 function draw() {
-  //movimentoJogador();
+  atualizarInventario();
 }
 
 function eventos(){
@@ -118,22 +117,22 @@ function desenharTerreno(){
    for (let x = 0; x < largura; x += tamanhoBloco){
     for (let y=0; y < altura; y += tamanhoBloco){
       let noiseValue = noise(x * frequencia, y * frequencia) * amplitude;
-      let info = {
+      let node = {
         x: x,
         y: y,
         densidade: noiseValue,
-        tipoBloco: "terrain"
+        blockType: "terrain"
       };
-      grid.push(info);
-      let index = grid.indexOf(info);
-      paintTerrainTiles(info, index);
-      paintMinerios(info, index);
+      grid.push(node);
+      let index = grid.indexOf(node);
+      paintTerrainTiles(node, index);
+      paintMinerios(node, index);
     }
    }
 }
 
-function paintTerrainTiles(info, index){
-  let {x, y, densidade} = info;
+function paintTerrainTiles(node, index){
+  let {x, y, densidade} = node;
   let noiseAmount = densidade * y; //quanto maior o Y maior quantidade de noise
   let alturaNivel = altura - y; //definir altura do terreno
 
@@ -162,8 +161,8 @@ function paintTerrainTiles(info, index){
   }
 }
 
-function paintMinerios(info, index){
-  let {x, y, densidade} = info;
+function paintMinerios(node, index){
+  let {x, y, densidade} = node;
   let noiseAmount = densidade * y; //quanto maior o Y maior quantidade de noise
   let alturaNivel = altura - y; //definir altura do terreno
 
@@ -178,4 +177,12 @@ function paintMinerios(info, index){
     fill(ironColor); //define "tile" do céu
     rect(x, y, tamanhoBloco, tamanhoBloco)
   }
+}
+
+function atualizarInventario(){
+  grassContainer.innerHTML = player.inventario.grass
+  dirtContainer.innerHTML = player.inventario.dirt
+  stoneContainer.innerHTML = player.inventario.stone
+  ironContainer.innerHTML = player.inventario.iron
+  diamondContainer.innerHTML = player.inventario .diamond
 }
