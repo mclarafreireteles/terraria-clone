@@ -34,9 +34,10 @@ main {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  
 }
 
-.form a {
+  .form a {
   text-decoration: none;
   font-weight: 600;
   font-size: 35px;
@@ -49,6 +50,8 @@ main {
     font-size: 30px;
     width: 15rem;
     height: 3rem;
+    border-radius: 40px;
+    padding-left: 1.5rem;
   }
 
 .inventario {
