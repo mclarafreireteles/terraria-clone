@@ -1,0 +1,68 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+.inventario {
+  height: 10vh;
+  background-color: azure;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tipo-bloco {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: rgb(18, 51, 80);
+  cursor: pointer;
+}
+
+.tipo-bloco:hover {
+  background-color: cornflowerblue !important;
+}
+
+#grass {
+  background-color: #99ff99;
+}
+
+#dirt {
+  background-color: #eba487;
+}
+
+#stone {
+  background-color: #696969;
+}
+
+#iron {
+  background-color: rgb(234, 234, 234);
+}
+
+
+#diamond {
+ background-color: #87ebd6;
+}
+
+#restart {
+  background-color: pink;
+}
+
+#restart {
+  background-color: pink;
+}
+
+.active {
+  border: 5px solid rgb(0, 0, 0);
+  box-shadow: 0 0 10px rgb(255, 139, 61);
+}
+
+
