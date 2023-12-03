@@ -2,8 +2,7 @@ let largura = window.innerWidth;
 let altura = window.innerHeight * 0.9;
 let tamanhoBloco = 25;
 
-
-let frequencia = 0.003 //frequencia de Noise
+let frequencia = 0.003; //frequencia de Noise
 let amplitude = 0.8; //amplitude do Noise
 let seed = 0; //seed inicial Noise
 
@@ -48,7 +47,7 @@ let player = {
 
 function setup() {
   noStroke();
-  setSeed();
+  setSeed();                                        
   createCanvas(largura, altura);
   desenharTerreno();  //utiliza Noise
   eventos();
@@ -58,6 +57,7 @@ function setup() {
 function draw() {
   atualizarInventario();
 }
+
 
 function eventos(){
   restartContainer.addEventListener("click", () => { //ir para a página inicial
@@ -92,7 +92,7 @@ function definirBlocoAtivo(container){ //recebe como parametro qual bloco será 
   blocoSelecionado = container;
 }
 
-function restart(){
+function restart(){ //recomeçar o mapa
   let urlRestart = window.location.href;
   window.location.href = urlRestart.substring(0, urlRestart.indexOf("/"));
 }
@@ -180,3 +180,5 @@ function atualizarInventario(){
   ironContainer.innerHTML = player.inventario.iron
   diamondContainer.innerHTML = player.inventario .diamond
 }
+
+
